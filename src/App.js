@@ -1,11 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Tabs, Table } from 'antd';
-import { Line } from 'react-chartjs-2';
-import 'antd/dist/antd.min.css';
+import 'antd/dist/reset.css';
+
 import './App.css';
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
+
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const API_URL = 'https://crypto-arbitrage-backend-production.up.railway.app/futures-vs-spot';
+
 
 const columns = [
   {
@@ -63,12 +87,15 @@ function App() {
   const fetchData = async () => {
     try {
       const res = await axios.get(API_URL);
+      console.log("Ответ от API:", res.data); // 👈 добавили сюда
       setData(res.data);
-      setHistory((prev) => [...prev.slice(-20), res.data]); // хранит до 20 последних срезов
+      setHistory((prev) => [...prev.slice(-20), res.data]);
     } catch (err) {
       console.error('Ошибка при загрузке данных:', err);
     }
   };
+  
+// добавили лог для отладки ответа API
 
   useEffect(() => {
     fetchData();

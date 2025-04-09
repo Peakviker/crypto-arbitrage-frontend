@@ -63,7 +63,7 @@ function App() {
     }
   };
 
-  useEffect(() => {useEffect(() => {
+  useEffect(() => {
     setData([
       {
         symbol: 'BTC/USDT',
@@ -81,7 +81,7 @@ function App() {
       }
     ]);
   }, []);
-  }, []);
+  
 
   return (
     <div style={{ padding: '20px' }}>

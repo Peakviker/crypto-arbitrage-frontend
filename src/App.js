@@ -35,7 +35,14 @@ const columns = [
     key: 'percent',
     render: (value) => {
       const style = {
-        backgroundColor: '#e6fff2',
+        backgroundColor:
+          Math.abs(value) > 2
+            ? '#00cc44'
+            : Math.abs(value) > 1.5
+            ? '#33cc66'
+            : Math.abs(value) > 1
+            ? '#99cc66'
+            : '#f6fff6',
         padding: '5px',
       };
       return <div style={style}>{value > 0 ? '+' : ''}{value.toFixed(2)}%</div>;
@@ -64,7 +71,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>📊 Арбитраж: Binance Futures vs KuCoin Spot</h2>
+      <h2>📊 Неебический арбитран: Binance Futures vs KuCoin Spot</h2>
       <Table columns={columns} dataSource={data} rowKey="symbol" pagination={false} />
     </div>
   );

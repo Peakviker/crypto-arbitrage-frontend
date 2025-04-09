@@ -63,10 +63,24 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 10000);
-    return () => clearInterval(interval);
+  useEffect(() => {useEffect(() => {
+    setData([
+      {
+        symbol: 'BTC/USDT',
+        futures_price: 100,
+        spot_price: 90,
+        diff: 10,
+        percent: 11.1
+      },
+      {
+        symbol: 'ETH/USDT',
+        futures_price: 2000,
+        spot_price: 1980,
+        diff: 20,
+        percent: 1.01
+      }
+    ]);
+  }, []);
   }, []);
 
   return (

@@ -56,7 +56,8 @@ function App() {
   const fetchData = async () => {
     try {
       const res = await axios.get(API_URL);
-      setData(res.data.data);
+      setData(res.data);
+
     } catch (err) {
       console.error('Ошибка при загрузке данных:', err);
     }
